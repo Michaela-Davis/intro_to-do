@@ -1,19 +1,22 @@
 //BUSINESS LOGIC
 var emptyList = [];
 
-
-
-
-
 // USER LOGIC
 $(document).ready(function() {
   $("form#to-do").submit(function(event) {
     event.preventDefault();
-    var toDoItem = ("input#toDo1").val();
+
+    // Get input using jQuery, you were missing the $
+    var toDoItem = $("input#toDo1").val();
+
     emptyList.push(toDoItem);
+
     var toDoList = emptyList.map(function(toDoItem) {
-      return "<li>" + toDoItem + "</li>";
+      return "<input type='checkbox'><li>" + toDoItem + "</li>";
     });
-    $("#displayList").text(displayList);
+
+    // I replaced .text with .html, so it "parses" the html
+    $("#displayList").html(toDoList);
+
   });
 });
